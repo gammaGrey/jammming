@@ -1,0 +1,22 @@
+.song {
+    text-align: left;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 3rem;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+.buttons {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    font-size: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: .35rem .35rem .7rem ;
+}
+.track h2 {
+    text-align: left;
+    text-decoration: underline;
+    color: #ffffff80;
+}

@@ -1,0 +1,8 @@
+.tracklist {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.track {
+    list-style-type: none;
+}

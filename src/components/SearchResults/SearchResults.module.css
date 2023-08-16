@@ -1,0 +1,11 @@
+.searchResultsList {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow: hidden;
+    
+    background-color: rgb(83, 76, 76);
+    width: 30%;
+    height: 100%;
+
+    border-radius: .5rem;
+}

@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  background-color: #858585;
+  width: 98dvw;
+  height: 97dvh;
+}
+
+.App header {
+  padding-bottom: 1rem;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}
+
+#mainSection {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
