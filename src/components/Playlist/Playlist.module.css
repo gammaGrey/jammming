@@ -1,4 +1,4 @@
-.Playlist {
+.playlist {
     border-radius: .5rem;
     width: 30%;
     height: 100%;
@@ -6,7 +6,38 @@
     background-color: rgb(95, 88, 88);
 }
 
-.label,
-.playlistName {
+.label {
     text-align: left;
+    position: relative;
+    right: 39px;
+}
+
+.buttons {
+    padding: .25rem;
+    width: fit-content;
+    height: 2rem;
+    border-radius: .35rem .35rem .7rem;
+    overflow: visible;
+
+}
+
+#playlistTitle {
+    padding: .25rem .5rem;
+    border: 2px solid #9e9e9ecc;
+    border-radius: 1rem 0.5rem 1rem 0.25rem;
+    
+    font-style: italic;
+    font-weight: 600;
+
+    text-decoration: underline #8080ca;
+    background-color: #8080ea9f;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+#playlistName {
+    display: block;
+    margin: 1rem auto
 }

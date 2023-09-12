@@ -9,12 +9,9 @@
   padding-bottom: 1rem;
 }
 
-.bold {
-  font-weight: 700;
-}
-
-.italic {
+.mmm {
   font-style: italic;
+  letter-spacing: -2px;
 }
 
 #mainSection {

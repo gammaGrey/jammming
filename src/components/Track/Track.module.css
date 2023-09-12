@@ -1,22 +1,59 @@
 .song {
-    text-align: left;
     display: flex;
-    flex-flow: row nowrap;
-    height: 3rem;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
+    height: 3rem;
     padding: 0.5rem;
+    border-radius: .35rem .35rem .7rem;
+    background-color: #99999980;
+    text-align: left;
 }
-.buttons {
+
+.title {
+    font-size: 1.2rem;
+}
+
+.artist {
+    font-size: 0.75rem;
+}
+
+.album {
+    font-size: 0.75rem;
+    align-self: flex-start;
+}
+
+.buttons,
+.buttonsWithPopup {
+    width: 2rem;
+    height: 2rem;
+    border-radius: .35rem .35rem .7rem;
+    overflow: visible;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 1000;
     font-size: 1.5rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: .35rem .35rem .7rem ;
 }
-.track h2 {
+
+.buttonsWithPopup::after {
+    content: "Already added!";
+    position: fixed;
+    margin: 0 auto;
+    top: 30%;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif, sans-serif;
+    overflow: visible;
+    background-color: #aaaaaa;
+    padding: .25rem;
+    border-radius: .375rem;
+    opacity: 100%;
+    z-index: 5;
+}
+
+.track {
     text-align: left;
     text-decoration: underline;
     color: #ffffff80;
+}
+
+.albumArt {
+    width: 2.5rem;
 }

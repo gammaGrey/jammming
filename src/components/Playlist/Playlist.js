@@ -2,25 +2,34 @@ import styles from "./Playlist.module.css"
 import Tracklist from "../Tracklist/Tracklist.js"
 
 export default function Playlist(props) {
-  console.log(props.playlistTracks);
 
   return (
     <div
-      className={styles.Playlist}
+      className={styles.playlist}
     >
-      <h2>Playlist</h2>
       <form>
-        <label className={styles.label} htmlFor={styles.playlistName}>Playlist name:</label>
+        <label
+          id={styles.playlistTitle}
+          htmlFor={styles.playlistName}>
+            Name your playlist
+          </label>
         <br/>
-        <input type="text" id={styles.playlistName} required />
-        <button></button>
+        <input required type="text"
+          id={styles.playlistName}
+          onChange={props.editPlaylistName}
+        />
       </form>
-      <br></br>
-
+      <h3>{props.playlistName}</h3>
       <Tracklist
         tracks={props.tracks} // playlist state array
         remove={props.removeFromPlaylist}
       />
+      <button
+        className={styles.buttons}
+        onClick={props.savePlaylist}>Save to Spotify</button>
+      <button
+        className={styles.buttons}
+        onClick={props.clearPlaylist}>Clear</button>
     </div>
   )
 }

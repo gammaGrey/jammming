@@ -1,0 +1,3 @@
+· Search for an artist/album by clicking the artist/album name/picture on a track
+· Next/previous page <buttons> in search ruesults
+· 

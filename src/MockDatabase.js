@@ -23,13 +23,13 @@ const trackArray = [ //{song, artist, album, ID}
 
 const songArray = [];
 
-for (let i = 0; i < 4 ; i++) {
+for (let i = 0; i < 6 ; i++) {
   let k = Math.floor((Math.random() * 2) + 1);
   let j = new Song(`mock song ${i}`,`artist ${k}`,`album ${i}`, `song-${i}`);
 
   songArray.push(j);
 };
-console.log("songArray:")
-console.log(songArray);
+// console.log("songArray:");
+// console.log(songArray);
 
 export default songArray;

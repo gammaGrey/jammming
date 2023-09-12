@@ -6,3 +6,10 @@
 .track {
     list-style-type: none;
 }
+
+#list {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: .25rem;
+    justify-content: space-between;
+}
