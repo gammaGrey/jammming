@@ -1,4 +1,4 @@
-import { getAccessToken, accessToken } from "../../accessToken";
+import { getAccessToken } from "../../accessToken";
 import styles from "./LoginButton.module.css"
 
 export default function LoginButton(props) {

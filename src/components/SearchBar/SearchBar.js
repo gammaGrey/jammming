@@ -1,6 +1,4 @@
 import styles from "./SearchBar.module.css";
-import searchRequest, { resultsArray } from "../../searchRequest";
-import { accessToken, getAccessToken } from "../../accessToken";
 
 export default function SearchBar(props) {
   return (

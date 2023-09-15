@@ -6,6 +6,7 @@ export default function Track(props) {
       <img
         className={styles.albumArt}
         src={props.albumArt}
+        alt={`Album art for ${props.album}`}
       />
 
       <div className="title-and-artist">
