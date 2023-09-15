@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/projects/jammming/static/css/main.d9101716.css",
-    "main.js": "/projects/jammming/static/js/main.936659ba.js",
-    "static/js/787.62d5a415.chunk.js": "/projects/jammming/static/js/787.62d5a415.chunk.js",
-    "index.html": "/projects/jammming/index.html",
-    "main.d9101716.css.map": "/projects/jammming/static/css/main.d9101716.css.map",
-    "main.936659ba.js.map": "/projects/jammming/static/js/main.936659ba.js.map",
-    "787.62d5a415.chunk.js.map": "/projects/jammming/static/js/787.62d5a415.chunk.js.map"
+    "main.css": "/jammming/static/css/main.d9101716.css",
+    "main.js": "/jammming/static/js/main.460d660e.js",
+    "static/js/787.62d5a415.chunk.js": "/jammming/static/js/787.62d5a415.chunk.js",
+    "index.html": "/jammming/index.html",
+    "main.d9101716.css.map": "/jammming/static/css/main.d9101716.css.map",
+    "main.460d660e.js.map": "/jammming/static/js/main.460d660e.js.map",
+    "787.62d5a415.chunk.js.map": "/jammming/static/js/787.62d5a415.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9101716.css",
-    "static/js/main.936659ba.js"
+    "static/js/main.460d660e.js"
   ]
 }
