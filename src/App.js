@@ -13,7 +13,7 @@ function App() {
   const [playlistName, setPlaylistName] = useState("[Playlist name goes here]");
   const [search, setSearch] = useState("");
 
-  const accessToken = localStorage.getItem("token");
+  let accessToken = localStorage.getItem("token");
 
   function handleSearchInput(e) {
     console.log("\nvalue: " + e.target.value);

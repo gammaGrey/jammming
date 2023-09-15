@@ -1,5 +1,5 @@
 const clientID = "18c21a64c86048f5940feb3b905c8538";
-const redirectURI = `http://localhost:3000`;
+const redirectURI = `https://gammagrey.github.io/jammming/`;
 
 let accessToken;
 let expiresIn;
