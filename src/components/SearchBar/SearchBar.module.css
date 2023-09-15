@@ -20,8 +20,9 @@
 
 .searchButton {
     background-color: #191414;
-    border-radius: 1rem .5rem 1rem .25rem ;
-    height: 2.125rem;
+    border-radius: 1rem .5rem 1rem .25rem;
+    height: 2rem;
+    width: 2rem;
 }
 
 #resultList {

@@ -3,14 +3,11 @@ import styles from "./SearchResults.module.css";
 
 export default function SearchResults(props) {
   let key = 0;
-
+  
   return(
     <div className={styles.searchResultsList}>
       <h2>Search Results</h2>
-      {/*
-        props.results: songObject array returned by searchRequest.js
-        A <Track/> component is rendered for each result returned (default: 20)
-      */}
+      
       {props.results.map(result => (
           <Track 
             className="array-result"
@@ -26,6 +23,11 @@ export default function SearchResults(props) {
             render="results"
           />
         ))}
+        <div>
+          <button>Prev</button>
+          <button>Next</button>
+          <p>Functionality coming soon</p>
+        </div>
     </div>
   )
 }

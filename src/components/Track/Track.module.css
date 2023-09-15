@@ -4,9 +4,11 @@
     align-items: center;
     height: 3rem;
     padding: 0.5rem;
-    border-radius: .35rem .35rem .7rem;
+    border-radius: .7rem .35rem .7rem .175rem;
     background-color: #99999980;
     text-align: left;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .title {

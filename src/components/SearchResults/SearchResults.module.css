@@ -1,6 +1,7 @@
 .searchResultsList {
     display: flex;
     flex-flow: column nowrap;
+    gap: .25rem;
     overflow: hidden;
     
     background-color: rgb(83, 76, 76);

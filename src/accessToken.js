@@ -1,13 +1,8 @@
 const clientID = "18c21a64c86048f5940feb3b905c8538";
 const redirectURI = `http://localhost:3000`;
 
-function state() {
-    return Math.floor(Math.random() * 1000000);
-}
-
 let accessToken;
 let expiresIn;
-let stateParam = state();
 
 //get access token by implicit grant
 export function getAccessToken() {
@@ -21,6 +16,7 @@ export function getAccessToken() {
         //positive lookbehind regex used (?<=)
         //matches everything after "access_token=" but before the next "&"
         accessToken = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
+        localStorage.setItem("token", accessToken);
         
         console.log(`hash fragment: ${window.location.hash}`);
         console.log(`access token: ${accessToken}`);
@@ -38,6 +34,5 @@ export function getAccessToken() {
         }, expiresIn * 1000);
     } 
 };
-//commented out until this can actually be implemented
-// &state=${stateParam}
-export { stateParam, accessToken };
+
+export { accessToken };

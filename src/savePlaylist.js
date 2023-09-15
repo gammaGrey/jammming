@@ -3,6 +3,7 @@ import { accessToken } from "./accessToken";
 export default async function savePlaylist(URIArray, playlistName) {
     let userID;
     let playlistID;
+    let savedPlaylist;
 
     try {
         const response = await fetch("https://api.spotify.com/v1/me", {
@@ -47,6 +48,7 @@ export default async function savePlaylist(URIArray, playlistName) {
             const jsonResponse = await response.json();
             console.log(jsonResponse);
             playlistID = jsonResponse.id;
+            savedPlaylist = jsonResponse.name;
         };
 
     } catch (e) {
@@ -68,6 +70,7 @@ export default async function savePlaylist(URIArray, playlistName) {
 
         if (response.ok) {
             console.log(await response.json());
+            alert(`Your playlist was saved as "${savedPlaylist}"`);
         }
 
     } catch (e) {

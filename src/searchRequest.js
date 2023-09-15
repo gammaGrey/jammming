@@ -1,11 +1,12 @@
-import { accessToken } from "./accessToken.js";
+let resultsArray =[];
 
-let resultsArray = [];
-function showResults(trackObjectArray) {
-    resultsArray.length = 0;
+export function showResults(x) {
+    resultsArray = [];
+
+    //reset resultsArray to empty array
+    // resultsArray.length = 0;
     //add each track as an object to resultsArray
-    for (const track of trackObjectArray.tracks.items) {
-        
+    for (const track of x.tracks.items) {
         resultsArray.push(
             {
                 // Update to display FEATURED/COLLAB artists
@@ -13,16 +14,13 @@ function showResults(trackObjectArray) {
                 name: track.name,
                 uri: track.uri,
                 album: track.album.album_type === "single" ? "Single" : track.album.name,
-
-                id: track.id,
-                albumArt: track.album.images["1"].url
-            }
-        );
+                albumArt: track.album.images["1"].url,
+                id: track.id
+            });
     }
 }
-//trying to pass search query from SearchBar.js to trackEndpoint variable
 
-export default async function searchRequest(query) {
+export default async function searchRequest(query, accessToken) {
     let queryEndpoint = `https://api.spotify.com/v1/search?type=track&q=${query}&limit=10&offset=0`;
 
     try {
@@ -38,12 +36,11 @@ export default async function searchRequest(query) {
         
         if (response.ok) {
             const jsonResponse = await response.json();
-            console.log("jsonResponse:");
+            console.log("search response: ")
             console.log(jsonResponse);
+            //function call to update resultsArray
+            //should probably be put in App.js, not here
             showResults(jsonResponse);
-
-            console.log("\nresults array:");
-            console.log(resultsArray);
         }
     } catch (e) {
         console.log(e);

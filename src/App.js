@@ -1,22 +1,19 @@
 import './App.css';
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import LoginButton from './components/LoginButton/LoginButton';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
-import { resultsArray } from './searchRequest.js';
-
-//refactor API request functions to have accessToken as a parameter 
-import { accessToken } from './accessToken.js';
+import searchRequest, { resultsArray } from './searchRequest.js';
 import savePlaylist from './savePlaylist.js';
 import buttonStyles from "./components/Track/Track.module.css";
 
 function App() {
-  const [results, setResults] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [playlistName, setPlaylistName] = useState("Jammming test playlist");
+  const [playlistName, setPlaylistName] = useState("[Playlist name goes here]");
   const [search, setSearch] = useState("");
+
+  const accessToken = localStorage.getItem("token");
 
   function handleSearchInput(e) {
     console.log("\nvalue: " + e.target.value);
@@ -24,20 +21,19 @@ function App() {
     setSearch(() => e.target.value)
   };
 
-  //changes results state, triggers useEffect to render SearchResults
-  //(useEffect commented out until all features are implemented)
   function handleSearchSubmit() {
-    setResults(() => resultsArray);
+    setSearch(() => search);
+    searchRequest(search, accessToken);
   };
 
   function handleAddToPlaylist(e) {
-    for (const song of results) {
-      if (!playlistTracks.includes(song) && song.id === e.target.id) {
+    for (const song of resultsArray) {
+      if (!playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
         setPlaylistTracks(prev => [...prev, song]);
 
-      } else if (playlistTracks.includes(song) && song.id === e.target.id) {
+      } else if (playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
         // POP-UP  APPEARS FOR 0.8s SAYING THE SONG'S ALREADY IN THE PLAYLIST
-        // Changes button className to one with an ::after pseudoelement for 800 ms
+        // Temporarily changes button className to one with an ::after pseudoelement
         e.target.className = buttonStyles.buttonsWithPopup;
         setTimeout(() => {
           e.target.className = buttonStyles.buttons;
@@ -53,54 +49,30 @@ function App() {
 
   function handlePlaylistName(e) {
     setPlaylistName(() => e.target.value);
-    console.log("playlist name: " + playlistName);
   };
 
   function handleSavePlaylist() {
-    //save each track's uri to an array
+    //save each track's uri to an array variable
     const URIArray = playlistTracks.map(track => track.uri);
     console.log("URIArray:")
     console.log(URIArray);
     savePlaylist(URIArray, playlistName);
-
-    setTimeout(() => {
-      
-    }, 830);
   };
 
-  function nextPage() {
+  function handleClearPlaylist () {
+    setPlaylistTracks(prev => []);
+  }
 
-  };
-
-  function prevPage () {
-
-  };
-
-  // COMMENTED OUT WHILE I FINISH NECESSARY FUNCTIONALITY
-  // useEffect(() => {
-  //   if (search) {
-  //     getAccessToken();
-  //     //re-render <SearchResults/> when resultsArray changes
-  //     searchRequest(search)
-  //     .then(
-  //       handleSearchSubmit()
-  //     )
-  //     .catch(() => {
-  //         getAccessToken();
-  //         console.log(new Error("with search effect hook"))
-  //     });
-  //   };
-  // }, [search, results]);
+  //coming soon
+  // function nextPage() {};
+  // function prevPage () {};
 
   return (
     <div className="App">
-      {/* <script defer>
-        {getAccessToken()}
-      </script> */}
-      <header >
-        <p>
+      <header>
+        <h2>
           I wanna be ja<span className="mmm">mmm</span>in' with you
-        </p>
+        </h2>
       </header>
       <LoginButton />
 
@@ -115,7 +87,7 @@ function App() {
       <div id="mainSection">
         <SearchResults
           addToPlaylist={handleAddToPlaylist}
-          results={results}
+          results={resultsArray}
         />
         <Playlist
           playlistName={playlistName}
@@ -123,6 +95,7 @@ function App() {
           tracks={playlistTracks}
           removeFromPlaylist={removeFromPlaylist}
           savePlaylist={handleSavePlaylist}
+          clear={handleClearPlaylist}
         />
       </div>
     </div>

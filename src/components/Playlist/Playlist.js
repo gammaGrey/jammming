@@ -4,10 +4,10 @@ import Tracklist from "../Tracklist/Tracklist.js"
 export default function Playlist(props) {
 
   return (
-    <div
-      className={styles.playlist}
-    >
-      <form>
+    <div className={styles.playlist}>
+      <form
+        onSubmit={(e) => {e.preventDefault()}}
+      >
         <label
           id={styles.playlistTitle}
           htmlFor={styles.playlistName}>
@@ -19,9 +19,8 @@ export default function Playlist(props) {
           onChange={props.editPlaylistName}
         />
       </form>
-      <h3>{props.playlistName}</h3>
       <Tracklist
-        tracks={props.tracks} // playlist state array
+        tracks={props.tracks}
         remove={props.removeFromPlaylist}
       />
       <button
@@ -29,7 +28,7 @@ export default function Playlist(props) {
         onClick={props.savePlaylist}>Save to Spotify</button>
       <button
         className={styles.buttons}
-        onClick={props.clearPlaylist}>Clear</button>
+        onClick={props.clear}>Clear</button>
     </div>
   )
 }

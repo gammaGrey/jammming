@@ -9,7 +9,7 @@
 .label {
     text-align: left;
     position: relative;
-    right: 39px;
+    right: 2.4375rem;
 }
 
 .buttons {
@@ -22,6 +22,7 @@
 }
 
 #playlistTitle {
+    display: inline-block;
     padding: .25rem .5rem;
     border: 2px solid #9e9e9ecc;
     border-radius: 1rem 0.5rem 1rem 0.25rem;
@@ -39,5 +40,20 @@
 
 #playlistName {
     display: block;
-    margin: 1rem auto
+    margin: 1rem auto;
+    padding: .125rem;
+    background-color: transparent;
+    border-bottom: inset #191414;
+    border-width: .125rem;
+    border-radius: .5rem .25rem .5rem .125rem;
+    
+
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    text-align: center;
+
+    &:focus-visible {
+        outline: none;
+    }
 }

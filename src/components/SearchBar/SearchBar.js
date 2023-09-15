@@ -1,22 +1,21 @@
 import styles from "./SearchBar.module.css";
 import searchRequest, { resultsArray } from "../../searchRequest";
+import { accessToken, getAccessToken } from "../../accessToken";
 
 export default function SearchBar(props) {
   return (
     <>
-    <h2>SearchBar</h2>
     <p>How it works atm:
       <br></br>
-      type in query, submit, then change/delete query to show results
-      <br></br>
-      Clunky, I know
+      type in a search query, submit, then change/delete query to show results
+      {/* <br></br>
+      Clunky, I know. That bug's being worked out */}
     </p>
     <form
       className={styles.searchForm}
       // sends the GET request to Spotify API
       onSubmit={(e) => {
         e.preventDefault();
-        searchRequest(props.searchQuery, null);
         props.handleSearchSubmit();
       }}
     >
@@ -32,27 +31,10 @@ export default function SearchBar(props) {
       <input
         className={styles.searchButton}
         type="submit"
-        value="🔍🎵"
+        value="🔍"
         aria-label="Search button"
       />
     </form>
-
-    {/*
-    The following JSX should render results before submission under the search bar, but requires the implementation of useEffect() in the onChange attribute in the text input field above
-
-    <div id={styles.resultList}>
-      {resultsArray.map((song) => (
-          <div
-            className={styles.songResult}
-            key={song.id}
-          >
-            <p>{song.name}</p>
-            <p className={styles.artist}>{song.artist}</p>
-          <p className={styles.album}>{song.album}</p>
-          </div>
-      ))}
-    </div> */}
-
     </>
   )
 }
