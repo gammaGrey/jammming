@@ -9,7 +9,7 @@ export default function Track(props) {
         alt={`Album art for ${props.album}`}
       />
 
-      <div className="title-and-artist">
+      <div className={styles.titleAndArtist}>
         <p
           className={styles.title}
           aria-label="song title"

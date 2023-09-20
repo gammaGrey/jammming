@@ -5,8 +5,19 @@
     overflow: hidden;
     
     background-color: rgb(83, 76, 76);
-    width: 30%;
+    width: 45%;
     height: 100%;
 
     border-radius: .5rem;
+}
+
+.buttons {
+    height: 2rem;
+    border-radius: .35rem .35rem .7rem;
+    overflow: visible;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 1000;
+    font-size: 1.125rem;
+    margin: 0 .5rem;
+    padding: 0 .25rem;
 }

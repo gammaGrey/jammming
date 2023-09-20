@@ -1,6 +1,5 @@
-import { accessToken } from "./accessToken";
-
 export default async function savePlaylist(URIArray, playlistName) {
+    let accessToken = sessionStorage.getItem("token")
     let userID;
     let playlistID;
     let savedPlaylist;

@@ -1,11 +1,23 @@
 #login {
-    display: inline-block;
-    background-color: #191414;
-    color: #1db954;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+
     padding: .5rem;
     border-radius: 2rem;
-    border: .125rem #1db954 ;
-    border-style: outset;
+    border: .125rem #1db954 outset;
+    color: #1db954;
+    background-color: #191414;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 600;
+}
+
+#loginButtonText {
+    display: inline-block;
+    margin: 0 .5rem;
+}
+
+#pic {
+    width: 2rem;
+    border-radius: 50%;
+    border: 0.125rem #1db954 inset;
 }

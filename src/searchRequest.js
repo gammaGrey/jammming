@@ -1,10 +1,9 @@
-let resultsArray =[];
+let resultsArray = [];
 
-export function showResults(x) {
+function showResults(x) {
+    //reset resultsArray to empty array
     resultsArray = [];
 
-    //reset resultsArray to empty array
-    // resultsArray.length = 0;
     //add each track as an object to resultsArray
     for (const track of x.tracks.items) {
         resultsArray.push(
@@ -18,13 +17,17 @@ export function showResults(x) {
                 id: track.id
             });
     }
+    return resultsArray;
 }
 
-export default async function searchRequest(query, accessToken) {
-    let queryEndpoint = `https://api.spotify.com/v1/search?type=track&q=${query}&limit=10&offset=0`;
+export default async function searchRequest(query, accessToken, offset = 0) {
+    if (!query) {
+        return;
+    }
+    let endpoint = `https://api.spotify.com/v1/search?type=track&q=${query}&limit=10&offset=${offset}`;
 
     try {
-        const response = await fetch(queryEndpoint,
+        const response = await fetch(endpoint,
             {
                 method: "GET",
                 headers: {
@@ -36,11 +39,10 @@ export default async function searchRequest(query, accessToken) {
         
         if (response.ok) {
             const jsonResponse = await response.json();
-            console.log("search response: ")
-            console.log(jsonResponse);
+
             //function call to update resultsArray
-            //should probably be put in App.js, not here
-            showResults(jsonResponse);
+            resultsArray = showResults(jsonResponse);
+            return resultsArray;
         }
     } catch (e) {
         console.log(e);

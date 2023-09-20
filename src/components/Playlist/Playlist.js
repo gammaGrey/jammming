@@ -7,14 +7,12 @@ export default function Playlist(props) {
     <div className={styles.playlist}>
       <form
         onSubmit={(e) => {e.preventDefault()}}
+        className={styles.formFlex}
       >
-        <label
-          id={styles.playlistTitle}
-          htmlFor={styles.playlistName}>
-            Name your playlist
-          </label>
-        <br/>
-        <input required type="text"
+        <input
+          required
+          type="text"
+          placeholder="Playlist Name"
           id={styles.playlistName}
           onChange={props.editPlaylistName}
         />

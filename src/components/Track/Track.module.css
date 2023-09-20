@@ -4,24 +4,34 @@
     align-items: center;
     height: 3rem;
     padding: 0.5rem;
-    border-radius: .7rem .35rem .7rem .175rem;
-    background-color: #99999980;
+    border-radius: .8rem .2rem;
+    border: .125rem solid #766;
+    background-color: #9a8a8a;
     text-align: left;
     width: 95%;
     margin: 0 auto;
 }
 
+.titleAndArtist {
+    align-self: flex-start;
+    width: 40%;
+}
+
 .title {
-    font-size: 1.2rem;
+    font-size: .875rem;
+    text-wrap: balance;
 }
 
 .artist {
-    font-size: 0.75rem;
+    font-size: 0.625rem;
+    font-weight: 600;
 }
 
 .album {
     font-size: 0.75rem;
     align-self: flex-start;
+    /* text-align: right; */
+    width: 40%
 }
 
 .buttons,

@@ -1,9 +1,6 @@
 .App {
   text-align: center;
-  background-color: #858585;
-  width: 98dvw;
-  height: 97dvh;
-
+  padding-bottom: 2dvh;
   & header {
     padding-bottom: 1rem;
   }
@@ -18,4 +15,5 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
+  margin-top: 1.25rem;
 }

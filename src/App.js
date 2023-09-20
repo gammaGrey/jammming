@@ -1,43 +1,85 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import searchRequest, { resultsArray } from './searchRequest.js';
 import LoginButton from './components/LoginButton/LoginButton';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
-import searchRequest, { resultsArray } from './searchRequest.js';
 import savePlaylist from './savePlaylist.js';
 import buttonStyles from "./components/Track/Track.module.css";
 
 function App() {
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [playlistName, setPlaylistName] = useState("[Playlist name goes here]");
+  const [playlistName, setPlaylistName] = useState("");
   const [search, setSearch] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [tracks, setTracks] = useState([]);
 
-  let accessToken = localStorage.getItem("token");
+  if (window.location.hash) {
+    //positive lookbehind regex used (?<=)
+    //matches everything after "access_token=" but before the next "&"
+    let token = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
+    sessionStorage.setItem("token", token);
+  }
+  let accessToken = sessionStorage.getItem("token");
 
   function handleSearchInput(e) {
-    console.log("\nvalue: " + e.target.value);
-    console.log("search state: " + search);
-    setSearch(() => e.target.value)
+    setOffset(() => 0);
+    setSearch(() => e.target.value);
   };
 
-  function handleSearchSubmit() {
-    setSearch(() => search);
-    searchRequest(search, accessToken);
+  // 
+  useEffect(() => {
+   searchRequest(search, accessToken, offset).then(() => setTracks(resultsArray))
+  }, [search, offset]);
+
+  useEffect(() => {
+    async function loggedIn () {
+      try {
+        const response = await fetch(`https://api.spotify.com/v1/me`,{
+          "method": "GET",
+          "headers": {
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+            "content-type": "application/json"
+          }
+        });
+        if (response.ok) {
+          const jsonResponse = await response.json();
+          
+          console.log("jsonUsername:");
+          console.log(jsonResponse);
+          
+          sessionStorage.setItem("display name", jsonResponse.display_name);
+          sessionStorage.setItem("user picture", jsonResponse.images[0].url);
+        }
+      } catch (e) {
+        console.log("Error with username GET request:");
+        console.log(e);
+      }
+    }
+    loggedIn();
+    }, []);
+
+  function nextPage () {
+    setOffset(o => o + 10);
+  };
+
+  function previousPage () {
+    if (offset >= 10) {
+      setOffset(o => o - 10);
+    }
   };
 
   function handleAddToPlaylist(e) {
     for (const song of resultsArray) {
       if (!playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
         setPlaylistTracks(prev => [...prev, song]);
-
       } else if (playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
-        // POP-UP  APPEARS FOR 0.8s SAYING THE SONG'S ALREADY IN THE PLAYLIST
-        // Temporarily changes button className to one with an ::after pseudoelement
+        // Temporarily changes button className to one with an ::after pseudoelement 
         e.target.className = buttonStyles.buttonsWithPopup;
         setTimeout(() => {
           e.target.className = buttonStyles.buttons;
-        }, 415);
+        }, 500);
       }
     }
   };
@@ -54,18 +96,13 @@ function App() {
   function handleSavePlaylist() {
     //save each track's uri to an array variable
     const URIArray = playlistTracks.map(track => track.uri);
-    console.log("URIArray:")
-    console.log(URIArray);
     savePlaylist(URIArray, playlistName);
   };
 
   function handleClearPlaylist () {
-    setPlaylistTracks(prev => []);
+    setPlaylistTracks(() => []);
   }
 
-  //coming soon
-  // function nextPage() {};
-  // function prevPage () {};
 
   return (
     <div className="App">
@@ -80,14 +117,15 @@ function App() {
         <SearchBar
           handleSearchInput={handleSearchInput}
           searchQuery={search}
-          handleSearchSubmit={handleSearchSubmit}
         />
       </div>
 
       <div id="mainSection">
         <SearchResults
           addToPlaylist={handleAddToPlaylist}
-          results={resultsArray}
+          results={tracks}
+          nextPage={nextPage}
+          previousPage={previousPage}
         />
         <Playlist
           playlistName={playlistName}
