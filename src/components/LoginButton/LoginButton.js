@@ -18,6 +18,7 @@ export default function LoginButton() {
           <img
             id={styles.pic}
             src={userPicture}
+            alt="Spotify user display picture"
           />
         </>
         : "Login"}

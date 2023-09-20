@@ -28,10 +28,10 @@ function App() {
     setSearch(() => e.target.value);
   };
 
-  // 
+  // updates search results for each input in the search bar
   useEffect(() => {
    searchRequest(search, accessToken, offset).then(() => setTracks(resultsArray))
-  }, [search, offset]);
+  }, [search, offset, accessToken]);
 
   useEffect(() => {
     async function loggedIn () {
