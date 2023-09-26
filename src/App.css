@@ -34,5 +34,7 @@
 
   #mainSection {
     margin-top: .5rem;
+    flex-flow: column nowrap;
+    align-items: center;
   }
 }
