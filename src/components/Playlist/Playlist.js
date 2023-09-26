@@ -12,7 +12,6 @@ export default function Playlist(props) {
         <input
           required
           type="text"
-          aria-label="Playlist name input field"
           placeholder="Playlist Name"
           id={styles.playlistName}
           onChange={props.editPlaylistName}

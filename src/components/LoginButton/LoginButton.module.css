@@ -21,13 +21,3 @@
     border-radius: 50%;
     border: 0.125rem #1db954 inset;
 }
-
-@media only screen and (max-width: 430px) {
-    #login {
-        padding: .285714rem;
-    }
-
-    #pic {
-        border: revert;
-    }
-}
