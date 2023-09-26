@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   padding-bottom: 2dvh;
+
   & header {
     padding-bottom: 1rem;
   }
@@ -16,4 +17,22 @@
   flex-flow: row nowrap;
   justify-content: space-evenly;
   margin-top: 1.25rem;
+}
+
+@media only screen and (max-width: 430px) {
+  html {
+    font-size: 14px;
+  }
+
+  header {
+    padding-bottom: .5rem;
+  }
+
+  .header-title {
+    font-size: 1.25rem;
+  }
+
+  #mainSection {
+    margin-top: .5rem;
+  }
 }

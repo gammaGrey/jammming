@@ -4,7 +4,7 @@
     align-items: center;
     height: 3rem;
     padding: 0.5rem;
-    border-radius: .8rem .2rem;
+    border-radius: .8rem .4rem;
     border: .125rem solid #766;
     background-color: #9a8a8a;
     text-align: left;
@@ -30,7 +30,6 @@
 .album {
     font-size: 0.75rem;
     align-self: flex-start;
-    /* text-align: right; */
     width: 40%
 }
 
@@ -68,4 +67,25 @@
 
 .albumArt {
     width: 2.5rem;
+}
+@media only screen and (max-width: 430px) {
+    .song {
+        width: 92%;
+        height: fit-content;
+        gap: .5rem;
+    }
+
+    .buttons,
+    .buttonsWithPopup {
+        width: 2.108rem;
+        height: initial;
+    }
+    .buttonsWithPopup::after {
+        right: 50%;
+    }
+
+    .artist {
+        margin-top: .25rem;
+        font-size: .785714rem;
+    }
 }

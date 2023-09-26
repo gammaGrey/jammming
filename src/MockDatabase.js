@@ -1,4 +1,11 @@
-import Song from "./Song";
+class Song {
+  constructor(title, artist, album, id) {
+      this.title = title;
+      this.artist = artist;
+      this.album = album;
+      this.id = id;
+  }
+}
 
 const trackArray = [ //{song, artist, album, ID}
   {
@@ -29,7 +36,5 @@ for (let i = 0; i < 6 ; i++) {
 
   songArray.push(j);
 };
-// console.log("songArray:");
-// console.log(songArray);
 
 export default songArray;

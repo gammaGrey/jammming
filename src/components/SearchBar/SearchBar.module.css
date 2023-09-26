@@ -61,3 +61,10 @@
 .album {
     font-size: 0.625rem;
 }
+
+@media only screen and (max-width: 430px) {
+    #searchBar {
+        width: 60%;
+        font-size: 1.142857rem;
+    }
+}
