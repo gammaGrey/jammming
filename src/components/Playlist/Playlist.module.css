@@ -12,14 +12,6 @@
     right: 2.4375rem;
 }
 
-/* .buttons {
-    padding: .25rem;
-    width: fit-content;
-    height: 2rem;
-    border-radius: .35rem .35rem .7rem;
-    overflow: visible;
-
-} */
 .buttons {
     height: 2rem;
     border-radius: .35rem .35rem .7rem;
@@ -56,5 +48,17 @@
 
     &:hover {
         background-color: #19141440;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .playlist {
+        width: 90%;
+        margin-top: 1rem;
+    }
+
+    .buttons {
+        font-size: 1.285714rem;
+        margin: 0.5rem 0.25rem;
     }
 }

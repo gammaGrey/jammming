@@ -21,3 +21,16 @@
     margin: 0 .5rem;
     padding: 0 .25rem;
 }
+
+#pageButtonSpace {
+    padding: .5rem;
+}
+
+@media only screen and (max-width: 430px) {
+    .searchResultsList {
+        width: 90%;
+    }
+    .buttons {
+        font-size: 1.285714rem;
+    }
+}

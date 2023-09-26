@@ -107,7 +107,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h2>
+        <h2 className="header-title">
           I wanna be ja<span className="mmm">mmm</span>in' with you
         </h2>
       </header>

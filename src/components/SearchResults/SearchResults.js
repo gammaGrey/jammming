@@ -23,7 +23,7 @@ export default function SearchResults(props) {
           render="results"
         />
       ))}
-        <div>
+        <div id={styles.pageButtonSpace}>
           <button
             className={styles.buttons}
             onClick={props.previousPage}
