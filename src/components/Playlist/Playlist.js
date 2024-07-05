@@ -1,33 +1,45 @@
 import styles from "./Playlist.module.css"
 import Tracklist from "../Tracklist/Tracklist.js"
 
-export default function Playlist(props) {
+export default function Playlist({ tracks, editPlaylistName, removeFromPlaylist, savePlaylist, clear }) {
 
   return (
     <div className={styles.playlist}>
+
       <form
-        onSubmit={(e) => {e.preventDefault()}}
+        onSubmit={ e => {e.preventDefault()} }
         className={styles.formFlex}
       >
         <input
           required
           type="text"
-          aria-label="Playlist name input field"
+          aria-label="enter playlist name"
           placeholder="Playlist Name"
           id={styles.playlistName}
-          onChange={props.editPlaylistName}
+          onChange={editPlaylistName}
         />
       </form>
+
       <Tracklist
-        tracks={props.tracks}
-        remove={props.removeFromPlaylist}
+        tracks={tracks}
+        remove={removeFromPlaylist}
       />
-      <button
-        className={styles.buttons}
-        onClick={props.savePlaylist}>Save to Spotify</button>
-      <button
-        className={styles.buttons}
-        onClick={props.clear}>Clear</button>
+
+      <div id={styles.buttonsContainer}>
+        <button
+          className={styles.buttons}
+          onClick={savePlaylist}
+        >
+          Save to Spotify
+        </button>
+
+        <button
+          className={styles.buttons}
+          onClick={clear}
+        >
+          Clear
+        </button>
+      </div>
     </div>
   )
 }

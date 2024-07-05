@@ -1,11 +1,12 @@
-import './App.css';
 import { useEffect, useState } from 'react';
-import searchRequest, { resultsArray } from './searchRequest.js';
+import { accessToken } from './accessToken.js';
+import searchRequest, { tracksArray } from './searchRequest.js';
+import savePlaylist from './savePlaylist.js';
 import LoginButton from './components/LoginButton/LoginButton';
+import Playlist from './components/Playlist/Playlist';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
-import Playlist from './components/Playlist/Playlist';
-import savePlaylist from './savePlaylist.js';
+import './App.css';
 import buttonStyles from "./components/Track/Track.module.css";
 
 function App() {
@@ -13,15 +14,16 @@ function App() {
   const [playlistName, setPlaylistName] = useState("");
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(0);
-  const [tracks, setTracks] = useState([]);
+  const [results, setResults] = useState([]);
+  const [user, setUser] = useState("");
+  const [userPic, setUserPic] = useState("");
 
   if (window.location.hash) {
-    //positive lookbehind regex used (?<=)
+    //positive lookbehind regex used ?<=
     //matches everything after "access_token=" but before the next "&"
     let token = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
     sessionStorage.setItem("token", token);
-  }
-  let accessToken = sessionStorage.getItem("token");
+  };
 
   function handleSearchInput(e) {
     setOffset(() => 0);
@@ -30,48 +32,43 @@ function App() {
 
   // updates search results for each input in the search bar
   useEffect(() => {
-   searchRequest(search, accessToken, offset).then(() => setTracks(resultsArray))
-  }, [search, offset, accessToken]);
+   searchRequest(search, accessToken, offset).then(() => setResults(tracksArray));
+  }, [search, offset]);
 
-  useEffect(() => {
-    async function loggedIn () {
-      try {
-        const response = await fetch(`https://api.spotify.com/v1/me`,{
-          "method": "GET",
-          "headers": {
-            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-            "content-type": "application/json"
-          }
-        });
-        if (response.ok) {
-          const jsonResponse = await response.json();
-          
-          console.log("jsonUsername:");
-          console.log(jsonResponse);
-          
-          sessionStorage.setItem("display name", jsonResponse.display_name);
-          sessionStorage.setItem("user picture", jsonResponse.images[0].url);
+  useEffect(() => async () => {
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/me`, {
+        "method": "GET",
+        "headers": {
+          "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+          "content-type": "application/json"
         }
-      } catch (e) {
-        console.log("Error with username GET request:");
-        console.log(e);
+      });
+      if (response.ok) {
+        const jsonResponse = await response.json();
+              
+        setUser(() => jsonResponse.display_name);
+        setUserPic(() => jsonResponse.images[0].url)
       }
+      
+    } catch (e) {
+      console.log("Error with username GET request:");
+      console.log(e);
     }
-    loggedIn();
-    }, []);
+  }, []);
 
   function nextPage () {
-    setOffset(o => o + 10);
+    setOffset(prev => prev + 10);
   };
 
   function previousPage () {
     if (offset >= 10) {
-      setOffset(o => o - 10);
+      setOffset(prev => prev - 10);
     }
   };
 
   function handleAddToPlaylist(e) {
-    for (const song of resultsArray) {
+    for (const song of tracksArray) {
       if (!playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
         setPlaylistTracks(prev => [...prev, song]);
       } else if (playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
@@ -105,13 +102,14 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div id="App">
       <header>
-        <h2 className="header-title">
-          I wanna be ja<span className="mmm">mmm</span>in' with you
-        </h2>
+        <LoginButton
+          user={user}
+          userPic={userPic}
+        />
+        <h1 id="header-title">I wanna be <span id="jammming">Ja<span className="mmm">mmm</span>in'</span> with you</h1>
       </header>
-      <LoginButton />
 
       <div id="search">
         <SearchBar
@@ -123,7 +121,7 @@ function App() {
       <div id="mainSection">
         <SearchResults
           addToPlaylist={handleAddToPlaylist}
-          results={tracks}
+          results={results}
           nextPage={nextPage}
           previousPage={previousPage}
         />

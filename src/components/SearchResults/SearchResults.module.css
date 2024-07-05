@@ -1,10 +1,14 @@
+#searchResultsSubtitle {
+    padding-top: .75rem;
+}
+
 .searchResultsList {
     display: flex;
     flex-flow: column nowrap;
     gap: .25rem;
     overflow: hidden;
     
-    background-color: rgb(83, 76, 76);
+    background-color: #8195A1;
     width: 45%;
     height: 100%;
 
@@ -13,24 +17,23 @@
 
 .buttons {
     height: 2rem;
-    border-radius: .35rem .35rem .7rem;
-    overflow: visible;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 1000;
-    font-size: 1.125rem;
-    margin: 0 .5rem;
-    padding: 0 .25rem;
+    border-radius: .35rem;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-size: .875rem;
+    padding: .125rem .25rem;
 }
 
-#pageButtonSpace {
+#pageButtonContainer {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
     padding: .5rem;
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 670px) {
     .searchResultsList {
-        width: 90%;
-    }
-    .buttons {
-        font-size: 1.285714rem;
+        width: 85%;
+        gap: 2px;
     }
 }

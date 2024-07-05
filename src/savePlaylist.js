@@ -1,5 +1,6 @@
+import { accessToken } from "./accessToken";
+
 export default async function savePlaylist(URIArray, playlistName) {
-    let accessToken = sessionStorage.getItem("token")
     let userID;
     let playlistID;
     let savedPlaylist;
@@ -11,12 +12,12 @@ export default async function savePlaylist(URIArray, playlistName) {
                 "Authorization": `Bearer ${accessToken}`,
                 "content-type": "application/json"
         }
-        })
+        });
 
         if (response.ok) {
             const jsonResponse = await response.json();
 
-            console.log("jsonResponse from savePlaylist:")
+            console.log("jsonResponse from savePlaylist:");
             console.log(jsonResponse);
 
             userID = jsonResponse.id;
@@ -27,6 +28,7 @@ export default async function savePlaylist(URIArray, playlistName) {
     };
     
     const newPlaylistEndpoint = `https://api.spotify.com/v1/users/${userID}/playlists`;
+    
     try {
         // SAVE PLAYLIST NAME TO STATE HOOK
         // "description": playlistDescription, added to data
@@ -55,6 +57,7 @@ export default async function savePlaylist(URIArray, playlistName) {
     };
 
     const savePlaylistEndpoint = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
+    
     try {
         const response = await fetch(savePlaylistEndpoint,{
             "method": "POST",
@@ -75,4 +78,4 @@ export default async function savePlaylist(URIArray, playlistName) {
     } catch (e) {
         console.log(e);
     }
-}
+};

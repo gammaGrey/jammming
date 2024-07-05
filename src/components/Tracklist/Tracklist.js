@@ -1,7 +1,7 @@
 import Track from "../Track/Track";
 import styles from "./Tracklist.module.css";
 
-export default function Tracklist(props) {
+export default function Tracklist({ tracks, remove }) {
   let key = 0;
 
   return (
@@ -11,7 +11,7 @@ export default function Tracklist(props) {
       <ul
         id={styles.list}
       >
-        {props.tracks.map(track => (
+        { tracks.map( track => (
           <li
             className={styles.track}
             key={key++}
@@ -23,10 +23,10 @@ export default function Tracklist(props) {
               artist={track.artist}
               album={track.album}
               albumArt={track.albumArt}
-              remove={props.remove}
+              remove={remove}
             />
           </li>
-        ))}
+        )) }
       </ul>
     </div>
   )

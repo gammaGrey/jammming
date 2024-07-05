@@ -1,12 +1,12 @@
 import styles from "./Track.module.css";
 
-export default function Track(props) {
+export default function Track({ album, albumArt, trackTitle, artist, render ,id, remove, addToPlaylist }) {
   return (
     <div className={styles.song}>
       <img
         className={styles.albumArt}
-        src={props.albumArt}
-        alt={`Album art for ${props.album}`}
+        src={albumArt}
+        alt={`${album} cover`}
       />
 
       <div className={styles.titleAndArtist}>
@@ -14,38 +14,37 @@ export default function Track(props) {
           className={styles.title}
           aria-label="song title"
         >
-          {props.trackTitle}
+          {trackTitle}
         </p>
         <p
           className={styles.artist}
           aria-label="song artist">
-          {props.artist}
+          {artist}
         </p>
       </div>
 
       <h5
         className={styles.album}
         aria-label="album title" >
-        {props.album}
+        {album}
       </h5>
 
-      { //ternary operator determines whether to render +add or -remove button
-        props.render === "results" ?
-        <button
-          className={styles.buttons}
-          onClick={props.addToPlaylist}
-          id={props.id}
-        >
-          +
-        </button>
-        :
-        <button
-          className={styles.buttons}
-          onClick={props.remove} //removeFromPlaylist function from App.js
-          id={props.id}
-        >
-          -
-        </button>
+      { //determines whether to render [+] add or [-] remove button
+        render === "results"
+        ? <button
+            id={id}
+            className={styles.buttons}
+            onClick={addToPlaylist}
+          >
+            +
+          </button>
+        : <button
+            id={id}
+            className={styles.buttons}
+            onClick={remove} //removeFromPlaylist handler function from App.js
+          >
+            -
+          </button>
       }
     </div>
   )

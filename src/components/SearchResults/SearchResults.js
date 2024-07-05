@@ -1,17 +1,16 @@
 import Track from "../Track/Track";
 import styles from "./SearchResults.module.css";
 
-export default function SearchResults(props) {
-  let key = 0;
+export default function SearchResults({ results, addToPlaylist, previousPage, nextPage }) {
 
   return(
     <div className={styles.searchResultsList}>
-      <h2>Search Results</h2>
+      <h2 id={styles.searchResultsSubtitle}>Search Results</h2>
       
-      {props.results.map(result => (
+      { results.map((result, i) => (
         <Track 
           className="array-result"
-          key={key++}
+          key={i}
 
           uri={result.uri}
           id={result.id}
@@ -19,20 +18,20 @@ export default function SearchResults(props) {
           artist={result.artist}
           album={result.album}
           albumArt={result.albumArt}
-          addToPlaylist={props.addToPlaylist}
+          addToPlaylist={addToPlaylist}
           render="results"
         />
       ))}
-        <div id={styles.pageButtonSpace}>
+        <div id={styles.pageButtonContainer}>
           <button
             className={styles.buttons}
-            onClick={props.previousPage}
+            onClick={previousPage}
           >
             Prev
           </button>
           <button
             className={styles.buttons}
-            onClick={props.nextPage}
+            onClick={nextPage}
           >
             Next
           </button>

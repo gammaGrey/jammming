@@ -10,17 +10,16 @@ export function getAccessToken() {
         console.log("ACCESS TOKEN: " + accessToken);
         return accessToken;
     }
-    //regex for access_token hash fragment: access_token=([^&]*)
     
     if (window.location.hash) {
         //positive lookbehind regex used (?<=)
-        //matches everything after "access_token=" but before the next "&"
+        //matches everything between "access_token=" and the next "&"
         accessToken = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
-        localStorage.setItem("token", accessToken);
         
         console.log(`hash fragment: ${window.location.hash}`);
         console.log(`access token: ${accessToken}`);
         return accessToken;
+        
     } else {   
         window.location = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&show_dialog=true&scope=playlist-modify-private playlist-modify-public user-read-private&redirect_uri=${redirectURI}`;
     };

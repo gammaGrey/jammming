@@ -2,11 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+
     padding: 0.5rem;
     border-radius: .8rem .4rem;
-    border: .125rem solid #766;
-    background-color: #9a8a8a;
+    background-color: #ECECED;
     text-align: left;
     width: 95%;
     margin: 0 auto;
@@ -68,9 +67,9 @@
 .albumArt {
     width: 2.5rem;
 }
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 670px) {
     .song {
-        width: 92%;
+        width: 93%;
         height: fit-content;
         gap: .5rem;
     }
@@ -86,6 +85,6 @@
 
     .artist {
         margin-top: .25rem;
-        font-size: .785714rem;
+        font-size: .7rem;
     }
 }

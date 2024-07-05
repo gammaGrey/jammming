@@ -1,20 +1,16 @@
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar(props) {
+export default function SearchBar({ handleSearchInput }) {
   return (
-    <>
-    <p>
-      Enter a song, artist or album to search
-    </p>
-    <form className={styles.searchForm}>
+    <form id={styles.searchForm}>
+      <label htmlFor={styles.searchBar} id={styles.searchLabel}>Enter a song, artist or album to search</label>
       <input
         type="text"
-        onChange={props.handleSearchInput}
+        onChange={handleSearchInput}
         id={styles.searchBar}
-        placeholder="🔍 Drop something groovy on me"
+        placeholder="search for a song"
         aria-label="Search bar"
       />
     </form>
-    </>
   )
 }

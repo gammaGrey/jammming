@@ -1,7 +1,6 @@
-#login {
-    display: inline-flex;
-    align-items: center;
-
+#loginButton {
+    position: relative;
+    margin-top: .5rem;
     padding: .5rem;
     border-radius: 2rem;
     border: .125rem #1db954 outset;
@@ -9,22 +8,38 @@
     background-color: #191414;
     font-family: Helvetica, Arial, sans-serif;
     font-weight: 600;
+    
+    &:hover {
+        cursor: pointer;
+        color: #28d163;
+        -webkit-text-stroke: #28d16350 1px;
+    }
 }
 
-#loginButtonText {
-    display: inline-block;
-    margin: 0 .5rem;
+#loggedInBanner {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1db954;
+    color: #191414;
+
+    font-size: 80%;
+}
+
+#loggedInText {
+    padding: 0 .5rem;
 }
 
 #pic {
-    width: 2rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
     border: 0.125rem #1db954 inset;
+    background-color: #191414;
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 670px) {
     #login {
-        padding: .285714rem;
+        padding: .2857rem;
     }
 
     #pic {

@@ -3,7 +3,7 @@
     width: 45%;
     height: 100%;
 
-    background-color: rgb(95, 88, 88);
+    background-color: #8195A1;
 }
 
 .label {
@@ -12,53 +12,53 @@
     right: 2.4375rem;
 }
 
-.buttons {
-    height: 2rem;
-    border-radius: .35rem .35rem .7rem;
-    overflow: visible;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 1000;
-    font-size: 1.125rem;
-    margin: 0 .5rem;
-    padding: 0 .25rem;
+#buttonsContainer {
+    width: 75%;
+    margin: 0 auto;
+    padding: .5rem 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.formFlex {
-    display: flex;
-    align-items: center;
+.buttons {
+    border-radius: .35rem;
+    overflow: visible;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-size: .875rem;
+    padding: .125rem;
 }
 
 #playlistName {
-    margin: .75rem auto;
-    padding: .125rem .125rem .125rem .5rem;
+    padding: .75rem .25rem;
     border: none;
-    border-bottom: .125rem solid #191414;
-    border-radius: 1rem .5rem 0 0;
+    border-bottom: .125rem solid #050B11;
+    border-radius: .5rem .5rem 0 0;
 
     width: 75%;
     background-color: transparent;
 
     font-size: 1.25rem;
     font-weight: 600;
-    font-family:'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+
+    
 
     &:focus-visible {
         outline: none;
     }
 
     &:hover {
-        background-color: #19141440;
+        background-color: #ffffff88;
+    }
+
+    &::placeholder {
+        color: #050B11bb;
     }
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 670px) {
     .playlist {
-        width: 90%;
+        width: 85%;
         margin-top: 1rem;
-    }
-
-    .buttons {
-        font-size: 1.285714rem;
-        margin: 0.5rem 0.25rem;
     }
 }
