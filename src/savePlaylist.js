@@ -1,4 +1,4 @@
-import { accessToken } from "./accessToken";
+import getAccessToken from "./accessToken";
 
 export default async function savePlaylist(URIArray, playlistName) {
     let userID;
@@ -9,7 +9,7 @@ export default async function savePlaylist(URIArray, playlistName) {
         const response = await fetch("https://api.spotify.com/v1/me", {
             "method": "GET",
             "headers": {
-                "Authorization": `Bearer ${accessToken}`,
+                "Authorization": `Bearer ${getAccessToken()}`,
                 "content-type": "application/json"
         }
         });
@@ -35,7 +35,7 @@ export default async function savePlaylist(URIArray, playlistName) {
         const response = await fetch(newPlaylistEndpoint, {
             "method": "POST",
             "headers": {
-                "Authorization": `Bearer ${accessToken}`,
+                "Authorization": `Bearer ${getAccessToken()}`,
                 "content-type": "application/json"
             },
             "body": JSON.stringify(
@@ -62,7 +62,7 @@ export default async function savePlaylist(URIArray, playlistName) {
         const response = await fetch(savePlaylistEndpoint,{
             "method": "POST",
             "headers": {
-                "Authorization": `Bearer ${accessToken}`,
+                "Authorization": `Bearer ${getAccessToken()}`,
                 "content-type": "application/json"
             },
             "body": JSON.stringify({

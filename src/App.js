@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { accessToken } from './accessToken.js';
+import getAccessToken from './accessToken.js';
 import searchRequest, { tracksArray } from './searchRequest.js';
 import savePlaylist from './savePlaylist.js';
 import LoginButton from './components/LoginButton/LoginButton';
@@ -25,21 +25,20 @@ function App() {
 
   // updates search results for each input in the search bar
   useEffect(() => {
-   searchRequest(search, accessToken, offset).then(() => setResults(tracksArray));
+   searchRequest(search, getAccessToken(), offset).then(() => setResults(tracksArray));
   }, [search, offset]);
 
   // get username and user profile image
-  useEffect(() => () => {
+  useEffect(() => async () => {
     if (user) {
       return;
     };
 
-    setTimeout(async () => {
-      try {
+    try {
         const response = await fetch(`https://api.spotify.com/v1/me`, {
           "method": "GET",
           "headers": {
-            "Authorization": `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${getAccessToken()}`,
             "content-type": "application/json"
           }
         });
@@ -55,7 +54,6 @@ function App() {
         console.log("Error with username GET request:");
         console.log(e);
       }
-    }, 250);
   });
 
   function nextPage () {
