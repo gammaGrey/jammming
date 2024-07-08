@@ -15,14 +15,15 @@ function App() {
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(0);
   const [results, setResults] = useState([]);
-  const [user, setUser] = useState("");
-  const [userPic, setUserPic] = useState("");
+  const [user, setUser] = useState(null);
+  const [userPic, setUserPic] = useState(null);
+  const [token, setToken] = useState(null);
 
   if (window.location.hash) {
     //positive lookbehind regex used ?<=
     //matches everything after "access_token=" but before the next "&"
-    let token = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
-    sessionStorage.setItem("token", token);
+    const accessToken = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
+    setToken(() => accessToken);
   };
 
   function handleSearchInput(e) {
@@ -40,7 +41,7 @@ function App() {
       const response = await fetch(`https://api.spotify.com/v1/me`, {
         "method": "GET",
         "headers": {
-          "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+          "Authorization": `Bearer ${token}`,
           "content-type": "application/json"
         }
       });
@@ -55,7 +56,7 @@ function App() {
       console.log("Error with username GET request:");
       console.log(e);
     }
-  }, []);
+  }, [token]);
 
   function nextPage () {
     setOffset(prev => prev + 10);
@@ -71,9 +72,11 @@ function App() {
     for (const song of tracksArray) {
       if (!playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
         setPlaylistTracks(prev => [...prev, song]);
+
       } else if (playlistTracks.some(track => song.id === track.id) && song.id === e.target.id) {
         // Temporarily changes button className to one with an ::after pseudoelement 
         e.target.className = buttonStyles.buttonsWithPopup;
+        
         setTimeout(() => {
           e.target.className = buttonStyles.buttons;
         }, 500);
