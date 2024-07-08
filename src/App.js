@@ -17,14 +17,6 @@ function App() {
   const [results, setResults] = useState([]);
   const [user, setUser] = useState(null);
   const [userPic, setUserPic] = useState(null);
-  const [token, setToken] = useState(null);
-
-  if (window.location.hash) {
-    //positive lookbehind regex used ?<=
-    //matches everything after "access_token=" but before the next "&"
-    const accessToken = window.location.toString().match(/(?<=access_token=)([^&]*)/)[0];
-    setToken(() => accessToken);
-  };
 
   function handleSearchInput(e) {
     setOffset(() => 0);
@@ -36,12 +28,13 @@ function App() {
    searchRequest(search, accessToken, offset).then(() => setResults(tracksArray));
   }, [search, offset]);
 
+  // get username and user profile image
   useEffect(() => async () => {
     try {
       const response = await fetch(`https://api.spotify.com/v1/me`, {
         "method": "GET",
         "headers": {
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${accessToken}`,
           "content-type": "application/json"
         }
       });
