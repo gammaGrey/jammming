@@ -45,9 +45,10 @@ function App() {
           "content-type": "application/json"
         }
       });
+
       if (response.ok) {
         const jsonResponse = await response.json();
-              
+
         setUser(() => jsonResponse.display_name);
         setUserPic(() => jsonResponse.images[0].url)
       }
@@ -56,7 +57,7 @@ function App() {
       console.log("Error with username GET request:");
       console.log(e);
     }
-  }, [token]);
+  });
 
   function nextPage () {
     setOffset(prev => prev + 10);
