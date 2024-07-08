@@ -33,16 +33,12 @@
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    border: 0.125rem #1db954 inset;
+    border: 0.125rem #10963f solid;
     background-color: #191414;
 }
 
 @media only screen and (max-width: 670px) {
     #login {
         padding: .2857rem;
-    }
-
-    #pic {
-        border: revert;
     }
 }

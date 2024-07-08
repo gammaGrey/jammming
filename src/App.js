@@ -29,27 +29,33 @@ function App() {
   }, [search, offset]);
 
   // get username and user profile image
-  useEffect(() => async () => {
-    try {
-      const response = await fetch(`https://api.spotify.com/v1/me`, {
-        "method": "GET",
-        "headers": {
-          "Authorization": `Bearer ${accessToken}`,
-          "content-type": "application/json"
+  useEffect(() => () => {
+    if (user) {
+      return;
+    };
+
+    setTimeout(async () => {
+      try {
+        const response = await fetch(`https://api.spotify.com/v1/me`, {
+          "method": "GET",
+          "headers": {
+            "Authorization": `Bearer ${accessToken}`,
+            "content-type": "application/json"
+          }
+        });
+  
+        if (response.ok) {
+          const jsonResponse = await response.json();
+  
+          setUser(() => jsonResponse.display_name);
+          setUserPic(() => jsonResponse.images[0].url)
         }
-      });
-
-      if (response.ok) {
-        const jsonResponse = await response.json();
-
-        setUser(() => jsonResponse.display_name);
-        setUserPic(() => jsonResponse.images[0].url)
+        
+      } catch (e) {
+        console.log("Error with username GET request:");
+        console.log(e);
       }
-      
-    } catch (e) {
-      console.log("Error with username GET request:");
-      console.log(e);
-    }
+    }, 250);
   });
 
   function nextPage () {
